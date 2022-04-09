@@ -1,0 +1,17 @@
+.header{
+    background: rgba(28, 43, 53, 1);
+height: 80px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.header a{
+    color: aliceblue;
+    text-decoration: none;
+   
+    font-size: 17px;
+    margin-right:  36px; ;
+}
+.header a:hover{
+    color: orange;
+}
