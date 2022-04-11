@@ -16,16 +16,21 @@ const Signup = () => {
 
   const handleEmailBlur = (event) => {
     setEmail(event.target.value);
+    console.log(event.target.value);
   };
 
   const handlePasswordBlur = (event) => {
     setPassword(event.target.value);
+    console.log(event.target.value);
   };
 
   const handleConfirmPasswordBlur = (event) => {
     setConfirmPassword(event.target.value);
   };
 
+  if (user) {
+    navigate("/shop");
+  }
   const hanndleCreateUser = (event) => {
     event.preventDefault();
 
@@ -33,11 +38,10 @@ const Signup = () => {
       setError("Two password did no matchedp");
       return;
     }
-    // if (password.length < 6) {
-    //   setError("Password should be 6 characters");
-    //   return;
-    // }
-    createUserWithEmailAndPassword(email, password);
+
+    createUserWithEmailAndPassword(email, password).then((result) => {
+      console.log("email  password", email, password);
+    });
   };
 
   return (
@@ -48,7 +52,7 @@ const Signup = () => {
           <div className="input-group">
             <label htmlFor="email">Email</label>
             <input
-              onClick={handleEmailBlur}
+              onBlur={handleEmailBlur}
               type="email"
               name="email"
               required
@@ -57,7 +61,7 @@ const Signup = () => {
           <div className="input-group">
             <label htmlFor="password">Password</label>
             <input
-              onClick={handlePasswordBlur}
+              onBlur={handlePasswordBlur}
               type="password"
               name="password"
               required
@@ -66,9 +70,9 @@ const Signup = () => {
           <div className="input-group">
             <label htmlFor="Confirm Password">Confirm Password</label>
             <input
-              onClick={handleConfirmPasswordBlur}
+              onBlur={handleConfirmPasswordBlur}
               type="password"
-              name="password"
+              name="confirm-password"
               required
             />
           </div>
